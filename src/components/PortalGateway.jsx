@@ -2,11 +2,10 @@
 import React from 'react';
 import { Building2, Receipt, ArrowRight } from 'lucide-react';
 import launchpadLogo from '../assets/lplogo.png'; 
-import heroBg from '../assets/launchpad.png'; // 1. Import the hero image here
+import heroBg from '../assets/launchpad.png'; 
 
 function PortalGateway() {
   return (
-    // 2. Make the main wrapper 'relative' so we can position the background inside it
     <div className="min-h-screen relative flex flex-col items-center justify-center p-6 font-sans">
       
       {/* --- BACKGROUND IMAGE & OVERLAY --- */}
@@ -14,11 +13,9 @@ function PortalGateway() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: `url(${heroBg})` }}
       ></div>
-      {/* This creates a dark tint over the image so text stays readable */}
       <div className="absolute inset-0 bg-[#1A1A1A]/85 z-0"></div> 
       {/* ---------------------------------- */}
 
-      {/* 3. Wrap all the content in a relative z-10 container so it sits ON TOP of the background */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-5xl">
         
         {/* Header Section */}
