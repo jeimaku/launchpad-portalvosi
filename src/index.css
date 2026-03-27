@@ -1,1 +1,95 @@
 @import "tailwindcss";
+
+/* Theme variables (used for global background/text fallback).
+	 Components using Tailwind utility classes may need additional adjustments
+	 to fully adapt to light/dark themes. */
+:root {
+	--app-bg: #3a3a3a;
+	--app-text: #ffffff;
+	--muted: #9ca3af;
+}
+
+html.theme-light {
+	--app-bg: #eeeeee;
+	--app-text: #0b0b0b;
+	--muted: #000000;
+}
+
+body {
+	background-color: var(--app-bg);
+	color: var(--app-text);
+}
+
+/* Override common Tailwind text utility colors in light theme so
+   components that use utility classes inherit the theme variables. */
+html.theme-light .text-white { color: var(--app-text) !important; }
+html.theme-light .text-gray-300,
+html.theme-light .text-gray-400,
+html.theme-light .text-gray-500 { color: var(--muted) !important; }
+
+/* Buttons/overlays that used near-black backgrounds can be tuned
+   in light mode by adjusting these classes if needed. */
+html.theme-light .bg-black\/40 { background-color: rgba(0,0,0,0.04) !important; }
+
+/* Centralized accent and component classes */
+:root {
+	--accent: #D4F82E;
+	--accent-foreground: #000000;
+	--overlay: rgba(0,0,0,0.4);
+}
+
+html.theme-light {
+	--accent: #D4F82E;
+	--accent-foreground: #000000;
+	--overlay: rgba(0,0,0,0.06);
+}
+
+.btn-accent {
+	background-color: var(--accent) !important;
+	color: var(--accent-foreground) !important;
+}
+.btn-accent:hover { filter: brightness(0.95); }
+
+.focus-accent:focus { border-color: var(--accent) !important; box-shadow: 0 0 0 4px rgba(212,248,46,0.08); }
+
+.overlay-bg { background-color: var(--overlay) !important; }
+
+.card-panel { background-color: var(--card-bg, rgba(10,10,10,0.72)); }
+
+/* Modal / panel theme variables */
+:root {
+	--modal-bg-start: rgba(13,13,13,0.92);
+	--modal-bg-end: rgba(26,26,26,0.92);
+	--panel-bg: rgba(27,27,27,0.8);
+	--modal-border: rgba(255,255,255,0.06);
+}
+
+html.theme-light {
+	--modal-bg-start: rgba(255,255,255,0.98);
+	--modal-bg-end: rgba(245,245,245,0.98);
+	--panel-bg: rgba(250,250,250,0.95);
+	--modal-border: rgba(0,0,0,0.08);
+}
+
+.modal-card {
+	background: linear-gradient(180deg, var(--modal-bg-start), var(--modal-bg-end));
+	border-color: var(--modal-border) !important;
+	color: var(--app-text) !important;
+}
+
+.panel-bg { background-color: var(--panel-bg) !important; }
+
+/* Inputs that follow theme */
+.panel-input {
+	background-color: var(--panel-bg) !important;
+	color: var(--app-text) !important;
+	border: 1px solid var(--modal-border) !important;
+}
+.panel-input::placeholder { color: color-mix(in srgb, var(--app-text) 40%, transparent) !important; }
+.panel-input:focus { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 12%, transparent); outline: none; }
+
+/* Accent helpers */
+.text-accent { color: var(--accent) !important; }
+.border-accent { border-color: var(--accent) !important; }
+.hover-accent:hover { background-color: var(--accent) !important; color: var(--accent-foreground) !important; }
+
